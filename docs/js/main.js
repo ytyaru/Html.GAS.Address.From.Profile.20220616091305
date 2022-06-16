@@ -43,13 +43,13 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     });
     */
     async function initForm(addr=null) {
-        const address = addr || 
-                        (window.hasOwnProperty('mpurse')) ? 
-                            await window.mpurse.getAddress() : null
+        const address = addr || (window.hasOwnProperty('mpurse')) ? await window.mpurse.getAddress() : null
         if (address) { showMyData(await getProfile(address)) }
     }
     document.getElementById('regist').addEventListener('click', async(event) => {
         console.debug('登録ボタンを押した。')
+        if (nothingRequired('address', 'アドレス')) { return }
+        if (nothingRequired('name', '名前')) { return }
         const j = makeJson()
         console.debug(j)
         const register = new ProfileRegister()
@@ -57,6 +57,13 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         console.debug(json)
         //const json = await register.post(j)
     });
+    function nothingRequired(id, label) {
+        //if ('' == document.getElementById(id).value.trim()) { Toaster.toast(`${label}を入力してください。`, true); return true; }
+        console.log((document.getElementById(id).value) ? 'T' : 'F')
+        if (!document.getElementById(id).value) { Toaster.toast(`${label}を入力してください。`, true); return true; }
+        console.debug(`存在する:${label}`)
+        return false
+    }
     async function getProfile(address) {
         console.debug(address)
         //if (!window.hasOwnProperty('mpurse')) { return null }

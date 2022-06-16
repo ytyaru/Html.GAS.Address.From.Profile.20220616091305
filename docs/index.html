@@ -2,7 +2,7 @@
 <html>
 <head prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#">
 <meta charset="utf-8">
-<title>アドレスとプロフィールを登録する</title>
+<title>mpurseのアドレスとプロフィールを登録する</title>
 <meta name="description" content="誰が誰だかわかりやすくするために。">
 <meta name="author" content="ytyaru">
 <link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja">
@@ -12,10 +12,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:type" content="profile" />
 <meta property="og:site_name" content="ytyaru" />
-<meta property="og:title" content="アドレスとプロフィールを登録する" />
+<meta property="og:title" content="mpurseのアドレスとプロフィールを登録する" />
 <meta property="og:description" content="誰が誰だかわかりやすくするために。" />
 <meta property="og:image" content="https://ytyaru.github.io/Html.Misskey.RedirectCallback.Event.20220612182913/asset/image/eye-catch.png" />
-<meta property="article:published_time" content="2022-06-13T12:50:00+09:00" />
+<meta property="article:published_time" content="2022-06-16T14:25:00+09:00" />
 <meta property="article:author" content="https://ytyaru.github.io/" />
 <meta name="twitter:card" content="summary_large_image" />
 <script type="application/ld+json">
@@ -41,9 +41,9 @@
         "https://meisskey.one/@ytyaru",
       ]
     },
-    "dateModified": "2022-06-13T12:50:00+09:00",
-    "datePublished": "2022-06-13T12:50:00+09:00",
-    "headline": "アドレスとプロフィールを登録する",
+    "dateModified": "2022-06-16T14:25:00+09:00",
+    "datePublished": "2022-06-16T14:25:00+09:00",
+    "headline": "mpurseのアドレスとプロフィールを登録する",
     "image": ["https://ytyaru.github.io/Html.Misskey.RedirectCallback.Event.20220612182913/asset/image/eye-catch.png"]
   }
 </script>
@@ -103,13 +103,13 @@
 <script src="js/main.js"></script>
 </head>
 <body>
-<h1>アドレスとプロフィールを登録する（できない）</h1>
-<p>　誰が誰だかわかりやすくするために。</p>
+<h1><a href="https://ytyaru.github.io/Html.Mpurse.Api.20220517160403/setup.html">mpurse</a>のアドレスとプロフィールを登録する</h1>
+<!--<form method="POST" action="https://script.google.com/macros/s/AKfycbwNi0_gZlV2zwntsd7pjfh2eBKcFL4ceJ-mrD5_T4bGuAsD3Wgr-oMnaMqmt00PiJqQzA/exec"><fieldset>-->
 <form><fieldset>
     <legend>プロフィール</legend>
     <table>
     <!--<tr><th>アドレス</th><td><input id="address" value="" placeholder="モナコインのアドレス" disabled required></td></tr>-->
-    <tr><th>アドレス</th><td><input id="address" value="" placeholder="モナコインのアドレス" required></td></tr>
+    <tr><th>アドレス</th><td><input id="address" value="" placeholder="モナコインのアドレス" required disabled></td></tr>
     <tr><th>名前</th><td><input id="name" value="" placeholder="あなたの表示名" required></td></tr>
     <tr><th>画像</th><td><input id="avatar" value="" placeholder="https://your.site/avatar.png"></td></tr>
     <tr><th>URL</th><td><input id="url" value="" placeholder="https://your.site/"></td></tr>
@@ -127,7 +127,6 @@
     </table>
     <br>
     <!--<button id="regist" type="submit">登録する</button>-->
-
     <button id="regist" type="button">登録する</button>
 </fieldset></form>
 <!--<button id="get" type="button">取得する</button>-->
@@ -143,6 +142,10 @@
 <h3>GASのCORSエラーを解決するために</h3>
 <p><code>Content-Type: application/json<code>にするとCORSエラーになる。<code>x-www-form-urlencoded</code>で送受信すると成功する。<a href="https://knmts.com/become-engineer-31/">参考</a>, <a href="https://qiita.com/masakielastic/items/70516e074eadf2ce09dd">参考2</a>, <a href="https://qiita.com/att55/items/04e8080d1c441837ad42#curl-%E3%81%AE-post-%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3--d-%E3%81%A8--f-%E3%81%AE%E9%81%95%E3%81%84">参考3</a></p>
 <p><a href="https://ytyaru.github.io/Html.Address.Profile.Register.20220614140841/">失敗例</a></p>
+<h2>課題</h2>
+<ul>
+<li><a href="https://monaledge.com/article/401">ブラウザ上でアドレスの本人確認ができない</a></li>
+</ul>
 
 <footer><a href="https://ytyaru.github.io/" title="著者"><img src="./asset/image/avator.png" width="64" height="64">ytyaru</a><mpurse-send-button to="MEHCqJbgiNERCH3bRAtNSSD9uxPViEX1nu" img="coin-monar"></mpurse-send-button><a href="https://ytyaru.github.io/Html.Mpurse.Api.20220517160403/setup.html" title="モナコインを使うには">？</a></footer>
 
