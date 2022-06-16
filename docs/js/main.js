@@ -95,6 +95,7 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         if (!json) { return }
         console.debug(json)
         document.getElementById('regist-form').reset()
+        document.getElementById('address').value = json.address
         document.getElementById('url').value = json.url
         document.getElementById('name').value = json.name
         document.getElementById('avatar').value = json.avatar
