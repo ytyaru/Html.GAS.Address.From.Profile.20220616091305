@@ -33,7 +33,8 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     */
     /*
     document.getElementById('get').addEventListener('click', async(event) => {
-        const address = document.getElementById('address').value
+        //const address = document.getElementById('address').value
+        const address = 'MEHCqJbgiNERCH3bRAtNSSD9uxPViEX1nu'
         if (address) {
             const register = new ProfileRegister()
             const json = await register.get(address)
@@ -107,6 +108,8 @@ window.addEventListener('DOMContentLoaded', async(event) => {
                 document.getElementById(`field-${i+1}-value`).value = fields[i].value
             }
         }
+        const gen = new ProfileGenerator()
+        document.getElementById('html-profile').innerHTML = gen.generate(json)
     }
     function makeProfiles(json) {
         const table = document.createElement('table')
