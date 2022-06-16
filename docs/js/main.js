@@ -44,7 +44,12 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     */
     async function initForm(addr=null) {
         const address = addr || (window.hasOwnProperty('mpurse')) ? await window.mpurse.getAddress() : null
-        if (address) { showMyData(await getProfile(address)) }
+        document.getElementById('address').value = address
+        if (address) {
+            const register = new ProfileRegister()
+            const json = await register.get(address)
+            showMyData(json)
+        }
     }
     document.getElementById('regist').addEventListener('click', async(event) => {
         console.debug('登録ボタンを押した。')
@@ -87,7 +92,7 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     }
     function showMyData(json) {
         if (!json) { return }
-        clearForm()
+        document.getElementById('regist-form').reset()
         document.getElementById('url').value = json.url
         document.getElementById('name').value = json.name
         document.getElementById('avatar').value = json.avatar
@@ -98,16 +103,6 @@ window.addEventListener('DOMContentLoaded', async(event) => {
                 document.getElementById(`field-${i+1}-key`).value = fields[i].key
                 document.getElementById(`field-${i+1}-value`).value = fields[i].value
             }
-        }
-    }
-    function clearForm() {
-        document.getElementById('url').value = ''
-        document.getElementById('name').value = ''
-        document.getElementById('avatar').value = ''
-        document.getElementById('description').value = ''
-        for (let i=0; i<4; i++) {
-            document.getElementById(`field-${i+1}-key`).value = ''
-            document.getElementById(`field-${i+1}-value`).value = ''
         }
     }
     function makeProfiles(json) {
