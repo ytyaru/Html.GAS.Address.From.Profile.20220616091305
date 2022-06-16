@@ -247,6 +247,7 @@ button:focus, button:focus img {
     #makeSendButton() {
         const button = document.createElement('button')
         button.setAttribute('title', (this.domain) ? `${this.domain}へノートする` : `任意のインスタンスへノートする`)
+        button.setAttribute('type', 'button')
         return button
     }
     #makeSendButtonImg() {

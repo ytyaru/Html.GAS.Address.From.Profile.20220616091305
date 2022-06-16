@@ -231,7 +231,7 @@ button:focus, button:focus img {
         }
         trB.innerHTML += `<td><toot-button></toot-button></td>`
         trD.innerHTML += '<td>' + this.#makeNewTabLink('https://www.fediverse.space/instances', 'インスタンス一覧（一覧にはマストドン以外のfediverseなサーバも含む。マストドンだけの一覧はない）', '他').outerHTML + '</td>'
-        trB.innerHTML += `<td rowspan="2"><button id="toot-dialog-close" title="閉じる"><span>❌</span></button></td>`
+        trB.innerHTML += `<td rowspan="2"><button id="toot-dialog-close" title="閉じる" type="button"><span>❌</span></button></td>`
         table.appendChild(trB)
         table.appendChild(trD)
         form.appendChild(status)

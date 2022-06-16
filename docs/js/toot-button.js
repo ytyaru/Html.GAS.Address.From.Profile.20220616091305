@@ -173,7 +173,7 @@ button:focus, button:focus img {
     }
     #makeSendButton() {
         const button = document.createElement('button')
-        //a.setAttribute('title', this.title)
+        button.setAttribute('type', 'button')
         button.setAttribute('title', (this.domain) ? `${this.domain}へトゥートする` : `任意のインスタンスへトゥートする`)
         return button
     }

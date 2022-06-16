@@ -214,7 +214,7 @@ button:focus, button:focus img {
             buttons.push(`<misskey-note-button domain="${domain}"></misskey-note-button>`)
         }
         buttons.push(`<misskey-note-button></misskey-note-button>`)
-        buttons.push(`<button id="misskey-note-dialog-close"><span style="font-size:${this.imgSize}px;">❌</span></button>`)
+        buttons.push(`<button id="misskey-note-dialog-close" type="button"><span style="font-size:${this.imgSize}px;">❌</span></button>`)
 
         form.appendChild(text)
         form.appendChild(remaining)
