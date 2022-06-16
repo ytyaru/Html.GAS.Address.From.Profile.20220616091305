@@ -48,7 +48,8 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         if (address) {
             const register = new ProfileRegister()
             const json = await register.get(address)
-            showMyData(json)
+            console.debug(json)
+            showMyData(JSON.parse(json.profile))
         }
     }
     document.getElementById('regist').addEventListener('click', async(event) => {
@@ -92,6 +93,7 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     }
     function showMyData(json) {
         if (!json) { return }
+        console.debug(json)
         document.getElementById('regist-form').reset()
         document.getElementById('url').value = json.url
         document.getElementById('name').value = json.name
