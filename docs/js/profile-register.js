@@ -12,7 +12,8 @@ class ProfileRegister {
         //const id = 'AKfycbyexo6zBrb9RbrUec1IHzpEE2rb5lyt6cihYDb3WcoqoGYF4KSJwzMMlWqzlrULh2UCmA' // application/x-www-form-urlencoded
         //const id = 'AKfycby5UbKTHwJEwi_TibDLFrK2eFvV4hHl4f2ka3CryFG-AXTzbMETsY4LZgtQf22O5KrI' // application/x-www-form-urlencoded
         //const id = 'AKfycbxvHdi488uV_z610g0B-ovXZfiFVZG3So2PaO9V5sZcSAbiLrUvw7laXlHCd85pxn6IoQ' // application/x-www-form-urlencoded
-        const id = 'AKfycbwNi0_gZlV2zwntsd7pjfh2eBKcFL4ceJ-mrD5_T4bGuAsD3Wgr-oMnaMqmt00PiJqQzA' // application/x-www-form-urlencoded
+        //const id = 'AKfycbwNi0_gZlV2zwntsd7pjfh2eBKcFL4ceJ-mrD5_T4bGuAsD3Wgr-oMnaMqmt00PiJqQzA' // application/x-www-form-urlencoded
+        const id = 'AKfycbxBfQZ16WS9SQJVeVpoKMLGzWF8lakNuBXnad7-rbRRyOiRhkE_yDgCX6CxlbzrBpOGOQ' // GET method=count 追加
         const base = `https://script.google.com/macros/s/${id}/exec`
         if (address) { 
             const url = new URL(base)
@@ -23,6 +24,11 @@ class ProfileRegister {
     }
     //async get() { return await this.client.get(this.#getUrl()) }
     async get(address=null) { return await this.client.get(this.#getUrl(address)) }
+    async getCount() {
+        const url = new URL(this.#getUrl())
+        url.searchParams.append('method', 'count')
+        return await this.client.get(url.href)
+    }
     #getPostData(address, profileJsonStr) { return {address: address, profile: profileJsonStr} }
     //post(data) { return this.client.post(url, null, data) }
     async post(address, profile) {

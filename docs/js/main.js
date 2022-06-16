@@ -46,12 +46,21 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     async function initForm(addr=null) {
         const address = addr || (window.hasOwnProperty('mpurse')) ? await window.mpurse.getAddress() : null
         document.getElementById('address').value = address
+        const register = new ProfileRegister()
+        await getRegistCount(register)
         if (address) {
-            const register = new ProfileRegister()
             const json = await register.get(address)
             console.debug(json)
-            showMyData(JSON.parse(json.profile))
+            if (json && !json.hasOwnProperty('error')) {
+                showMyData(JSON.parse(json.profile))
+            }
         }
+    }
+    async function getRegistCount(register=null) {
+        const r = register || new ProfileRegister()
+        const json = await r.getCount()
+        console.debug(json)
+        document.getElementById('regist-count').innerText = json.count || 0
     }
     document.getElementById('regist').addEventListener('click', async(event) => {
         console.debug('登録ボタンを押した。')
@@ -61,6 +70,14 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         console.debug(j)
         const register = new ProfileRegister()
         const json = await register.post(document.getElementById('address').value, j)
+        if (json.hasOwnProperty('method')) {
+            if ('insert' == json.method) { // 新規追加なら登録者数を+1する
+                document.getElementById('regist-count').value = parseInt(document.getElementById('regist-count').value) + 1
+                Toaster.toast('登録しました！')
+            } else if ('update' == json.method) {
+                Toaster.toast('更新しました！')
+            }
+        }
         console.debug(json)
         //const json = await register.post(j)
     });
