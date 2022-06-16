@@ -74,8 +74,10 @@ window.addEventListener('DOMContentLoaded', async(event) => {
             if ('insert' == json.method) { // 新規追加なら登録者数を+1する
                 document.getElementById('regist-count').value = parseInt(document.getElementById('regist-count').value) + 1
                 Toaster.toast('登録しました！')
+                showMyData(makeJson())
             } else if ('update' == json.method) {
                 Toaster.toast('更新しました！')
+                showMyData(makeJson())
             }
         }
         console.debug(json)
