@@ -14,6 +14,7 @@ class ProfileGenerator {
         return (address) ? `<mpurse-send-button img-size="32" amount="0.04649000" to="${address}"></mpurse-send-button>` : ''
     }
     #getAddress(json) {
+        if (json.hasOwnProperty('address')) { return json.address }
         let address = this.#getAddressFirst(json.description)
         if (address) { return address }
         for (const field of json.fields) {
