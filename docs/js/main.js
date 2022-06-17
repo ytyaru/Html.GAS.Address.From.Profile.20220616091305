@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', async(event) => {
     try {
         window.mpurse.updateEmitter.removeAllListeners()
-          .on('stateChanged', isUnlocked => console.log(isUnlocked))
+          .on('stateChanged', async(isUnlocked) => { await initForm(); console.log(isUnlocked); })
           .on('addressChanged', async(address) => { await initForm(address); console.log(address); });
     } catch(e) { console.debug(e) }
     /*
@@ -31,6 +31,7 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         showMyData(j)
     });
     */
+    /*
     document.getElementById('get').addEventListener('click', async(event) => {
         const address = document.getElementById('address').value
         //const address = 'MEHCqJbgiNERCH3bRAtNSSD9uxPViEX1nu'
@@ -43,7 +44,6 @@ window.addEventListener('DOMContentLoaded', async(event) => {
             //showMyData(JSON.parse(json.profile))
         }
     });
-    /*
     */
     async function initForm(addr=null) {
         const address = addr || (window.hasOwnProperty('mpurse')) ? await window.mpurse.getAddress() : null
