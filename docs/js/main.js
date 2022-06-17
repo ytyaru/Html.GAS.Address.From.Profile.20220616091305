@@ -120,7 +120,7 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     function showMyData(json) {
         if (!json) { return }
         console.debug(json)
-        const profile = (typeof value === "string" || value instanceof String) ? JSON.parse(json.profile) : json.profile
+        const profile = (typeof json.profile === "string" || json.profile instanceof String) ? JSON.parse(json.profile) : json.profile
         console.debug(profile)
         document.getElementById('regist-form').reset()
         document.getElementById('address').value = json.address
