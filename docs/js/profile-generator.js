@@ -17,11 +17,13 @@ class ProfileGenerator {
         if (json.hasOwnProperty('address')) { return json.address }
         let address = this.#getAddressFirst(json.description)
         if (address) { return address }
-        for (const field of json.fields) {
-            console.debug(field)
-            if ('モナコイン' == field.key || 'MONACOIN' == field.key.toUpperCase()) {
-                address = this.#getAddressFirst(field.value)
-                if (address) { return address }
+        if (json.hasOwnProperty('fields')) {
+            for (const field of json.fields) {
+                console.debug(field)
+                if ('モナコイン' == field.key || 'MONACOIN' == field.key.toUpperCase()) {
+                    address = this.#getAddressFirst(field.value)
+                    if (address) { return address }
+                }
             }
         }
         return ''
@@ -44,6 +46,7 @@ class ProfileGenerator {
     }
     #link(url, text=null) { return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text || url}</a>` }
     #makeFields(json, address) {
+        if (!json.hasOwnProperty('fields')) { return '' }
         const tr = []
         for (const field of json.fields) {
             const value = (field.value.startsWith('https://')) ? this.#link(field.value) : (this.#getAddressFirst(field.value)) ? `${this.#makeMpurseSendButton(address)}${address}` : field.value
