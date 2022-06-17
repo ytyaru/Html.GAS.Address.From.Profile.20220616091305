@@ -31,17 +31,19 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         showMyData(j)
     });
     */
-    /*
     document.getElementById('get').addEventListener('click', async(event) => {
-        //const address = document.getElementById('address').value
-        const address = 'MEHCqJbgiNERCH3bRAtNSSD9uxPViEX1nu'
+        const address = document.getElementById('address').value
+        //const address = 'MEHCqJbgiNERCH3bRAtNSSD9uxPViEX1nu'
         if (address) {
             const register = new ProfileRegister()
             const json = await register.get(address)
             console.debug(json)
-            showMyData(JSON.parse(json.profile))
+            showMyData(json)
+            //showMyData(json.profile)
+            //showMyData(JSON.parse(json.profile))
         }
     });
+    /*
     */
     async function initForm(addr=null) {
         const address = addr || (window.hasOwnProperty('mpurse')) ? await window.mpurse.getAddress() : null
@@ -53,7 +55,7 @@ window.addEventListener('DOMContentLoaded', async(event) => {
             console.debug(json)
             if (json && !json.hasOwnProperty('error')) {
                 //showMyData(json.address, JSON.parse(json.profile))
-                json.profile = JSON.parse(json.profile)
+                //json.profile = JSON.parse(json.profile)
                 showMyData(json)
             }
         }
@@ -117,7 +119,8 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     }
     function showMyData(json) {
         if (!json) { return }
-        const profile = JSON.parse(json.profile)
+        console.debug(json)
+        const profile = (typeof value === "string" || value instanceof String) ? JSON.parse(json.profile) : json.profile
         console.debug(profile)
         document.getElementById('regist-form').reset()
         document.getElementById('address').value = json.address
