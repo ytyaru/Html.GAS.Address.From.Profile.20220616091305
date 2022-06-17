@@ -52,7 +52,9 @@ window.addEventListener('DOMContentLoaded', async(event) => {
             const json = await register.get(address)
             console.debug(json)
             if (json && !json.hasOwnProperty('error')) {
-                showMyData(JSON.parse(json.profile))
+                //showMyData(json.address, JSON.parse(json.profile))
+                json.profile = JSON.parse(json.profile)
+                showMyData(json)
             }
         }
     }
@@ -66,7 +68,9 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         console.debug('登録ボタンを押した。')
         if (nothingRequired('address', 'アドレス')) { return }
         if (nothingRequired('name', '名前')) { return }
-        const j = makeJson()
+        const address = document.getElementById('address').value
+        const j = makeProfileJson()
+        delete j.address
         console.debug(j)
         const register = new ProfileRegister()
         const json = await register.post(document.getElementById('address').value, j)
@@ -74,11 +78,11 @@ window.addEventListener('DOMContentLoaded', async(event) => {
             if ('insert' == json.method) { // 新規追加なら登録者数を+1する
                 document.getElementById('regist-count').value = parseInt(document.getElementById('regist-count').value) + 1
                 Toaster.toast('登録しました！')
-                showMyData(makeJson())
             } else if ('update' == json.method) {
                 Toaster.toast('更新しました！')
-                showMyData(makeJson())
             }
+            j.address = document.getElementById('address').value
+            showMyData(j)
         }
         console.debug(json)
         //const json = await register.post(j)
@@ -113,14 +117,15 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     }
     function showMyData(json) {
         if (!json) { return }
-        console.debug(json)
+        const profile = JSON.parse(json.profile)
+        console.debug(profile)
         document.getElementById('regist-form').reset()
         document.getElementById('address').value = json.address
-        document.getElementById('url').value = json.url
-        document.getElementById('name').value = json.name
-        document.getElementById('avatar').value = json.avatar
-        document.getElementById('description').value = json.description
-        const fields = (json.hasOwnProperty('fields')) ? json.fields : null
+        document.getElementById('url').value = profile.url
+        document.getElementById('name').value = profile.name
+        document.getElementById('avatar').value = profile.avatar
+        document.getElementById('description').value = profile.description
+        const fields = (profile.hasOwnProperty('fields')) ? profile.fields : null
         if (fields) {
             for (let i=0; i<fields.length; i++) {
                 document.getElementById(`field-${i+1}-key`).value = fields[i].key
@@ -128,8 +133,9 @@ window.addEventListener('DOMContentLoaded', async(event) => {
             }
         }
         const gen = new ProfileGenerator()
-        document.getElementById('html-profile').innerHTML = gen.generate(json)
+        document.getElementById('html-profile').innerHTML = gen.generate(profile)
     }
+    /*
     function makeProfiles(json) {
         const table = document.createElement('table')
         const one = document.createElement('tr')
@@ -140,6 +146,7 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         table.appendChild(two)
         return table.outerHTML
     }
+    */
     function makeLink(url, innerHtml=null) {
         const a = document.createElement('a')
         a.setAttribute('href', url)
@@ -157,7 +164,7 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         return (address) ? `<mpurse-send-button img-size="32" amount="0.04649000" to="${address}"></mpurse-send-button>` : ''
     }
 
-    function makeJson() {
+    function makeProfileJson() {
         const address = document.getElementById('address').value
         const url = document.getElementById('url').value
         const name = document.getElementById('name').value
