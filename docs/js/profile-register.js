@@ -14,7 +14,8 @@ class ProfileRegister {
         //const id = 'AKfycbxvHdi488uV_z610g0B-ovXZfiFVZG3So2PaO9V5sZcSAbiLrUvw7laXlHCd85pxn6IoQ' // application/x-www-form-urlencoded
         //const id = 'AKfycbwNi0_gZlV2zwntsd7pjfh2eBKcFL4ceJ-mrD5_T4bGuAsD3Wgr-oMnaMqmt00PiJqQzA' // application/x-www-form-urlencoded
         //const id = 'AKfycbxBfQZ16WS9SQJVeVpoKMLGzWF8lakNuBXnad7-rbRRyOiRhkE_yDgCX6CxlbzrBpOGOQ' // GET method=count 追加
-        const id = 'AKfycby2S5NEH6QQSO1bT5cJieanUP7RumMI48QCkPhj3eROlaMtH6I4hIZ2yIYrdJkcZaAD4w' // POST 先頭行へ追加する
+        //const id = 'AKfycby2S5NEH6QQSO1bT5cJieanUP7RumMI48QCkPhj3eROlaMtH6I4hIZ2yIYrdJkcZaAD4w' // POST 先頭行へ追加する
+        const id = 'AKfycbySYK8TOQ4XtlkYb5_ayHMrPApvn-k1OoE6A5Tgw2mKQ2RhW1eATMPxVelXFHQyYsClrQ' // 枠線を引く
         const base = `https://script.google.com/macros/s/${id}/exec`
         if (address) { 
             const url = new URL(base)

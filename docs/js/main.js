@@ -118,8 +118,9 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         return null
     }
     function showMyData(json) {
-        if (!json) { return }
         console.debug(json)
+        if (!json) { return }
+        if (json.hasOwnProperty('error')) { return }
         const profile = (typeof json.profile === "string" || json.profile instanceof String) ? JSON.parse(json.profile) : json.profile
         console.debug(profile)
         document.getElementById('regist-form').reset()
