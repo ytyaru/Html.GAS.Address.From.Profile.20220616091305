@@ -83,8 +83,9 @@ window.addEventListener('DOMContentLoaded', async(event) => {
             } else if ('update' == json.method) {
                 Toaster.toast('更新しました！')
             }
-            j.address = document.getElementById('address').value
-            showMyData(j)
+            //j.address = document.getElementById('address').value
+            //showMyData(j)
+            showMyData({address:address, profile:j})
         }
         console.debug(json)
         //const json = await register.post(j)
